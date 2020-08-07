@@ -33,14 +33,14 @@ const controlSearch = async () => {
         renderLoader(elements.searchRes);
 
         try {
+            elements.errorSearch.style.display = 'none';
             // 4) Search for recipes
             await state.search.getResults();
-    
             // 5) Render results on UI
             clearLoader();
             searchView.renderResults(state.search.result);
         } catch (err) {
-            alert('Something wrong with the search...');
+            elements.errorSearch.style.display = 'block';
             clearLoader();
         }
     }
@@ -95,34 +95,40 @@ const controlRecipe = async () => {
                 state.recipe,
                 state.likes.isLiked(id)
             );
-
-        } catch (err) {
-            console.log(err);
-            alert('Error processing recipe!');
+            elements.errorRecipe.style.display = 'none';
+        } catch (error) {
+            console.log(error);
+            elements.errorRecipe.style.display = 'block';
         }
     }
 };
  
 ['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));
-
+document.addEventListener('click', e => {
+    if (state.list.items.length > 1) {elements.shoppingDeleteAll.style.visibility = 'visible'}
+    else {elements.shoppingDeleteAll.style.visibility = 'hidden'}
+})
 
 /** 
  * LIST CONTROLLER
  */
 const controlList = () => {
     // Create a new list IF there in none yet
-    if (!state.list) state.list = new List();
-
+    if (!state.list) state.list = new List(); 
     // Add each ingredient to the list and UI
     state.recipe.ingredients.forEach(el => {
+        // if (state.list.items.length > 1) {elements.shoppingDeleteAll.style.visibility = 'visible'}
+        // else {elements.shoppingDeleteAll.style.visibility = 'hidden'}
         const item = state.list.addItem(el.count, el.unit, el.ingredient);
         listView.renderItem(item);
     });
 }
 
 // Handle delete and update list item events
-elements.shopping.addEventListener('click', e => {
+elements.shoppingList.addEventListener('click', e => {
     const id = parseFloat(e.target.closest('.shopping__item').dataset.itemid,10);
+    // if (state.list.items.length > 1) {elements.shoppingDeleteAll.style.visibility = 'visible'}
+    // else {elements.shoppingDeleteAll.style.visibility = 'hidden'}
 
     // Handle the delete button
     if (e.target.matches('.shopping__delete, .shopping__delete *')) {
@@ -137,6 +143,18 @@ elements.shopping.addEventListener('click', e => {
         const val = parseFloat(e.target.value, 10);
         state.list.updateCount(id, val);
     }
+});
+// Handle delete and update all list items
+elements.shopping.addEventListener('click', e => {
+    // Handle the delete button
+    if (e.target.matches('.shopping__deleteAll, .shopping__deleteAll *')) {
+        // Delete from state
+        state.list.deleteAll();
+
+        // Delete from UI
+        listView.deleteAll();
+        elements.shoppingDeleteAll.style.visibility = 'hidden';
+    } 
 });
 
 

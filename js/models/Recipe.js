@@ -1,4 +1,4 @@
-import { key, proxy } from '../config.js';
+import { elements } from '../views/base.js';
 
 export default class Recipe {
     constructor(id) {
@@ -13,9 +13,11 @@ export default class Recipe {
             this.img = res.recipe.image_url;
             this.url = res.recipe.source_url;
             this.ingredients = res.recipe.ingredients;
+
+            elements.errorRecipe.style.display = 'none';
         } catch (error) {
             console.log(error);
-            alert('Something went wrong :(');
+            elements.errorRecipe.style.display = 'block';
         }
     }
 

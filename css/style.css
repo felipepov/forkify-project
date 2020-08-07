@@ -26,7 +26,7 @@ body {
 
 .container {
   max-width: 120rem;
-  margin: 4vw auto;
+  margin: auto auto 4vw auto;
   background-color: #fff;
   border-radius: 6px;
   overflow: hidden;
@@ -188,6 +188,23 @@ body {
     .search__field::placeholder {
       color: #DAD0CC; }
 
+
+      .error {
+        display: flex;
+        flex-direction: column;
+        height: 4vw;
+      }
+      .error span{
+        font-size: 1.5rem;
+        font-family: inherit;
+        height: 2.5rem;
+        background: red;
+        color: white;
+        text-align: center;
+        display: none;
+      }
+
+
 .likes {
   position: relative;
   align-self: stretch;
@@ -285,11 +302,13 @@ body {
     text-transform: uppercase;
     font-weight: 600; }
   .results__pages,
-  .likes__pages {
+  .likes__pages,
+  .shopping__deleteAll {
     margin-top: 3rem;
     padding: 0 3rem; }
     .results__pages::after,
-    .likes__pages::after {
+    .likes__pages::after,
+    .shopping__deleteAll::after {
       content: "";
       display: table;
       clear: both; }
@@ -465,7 +484,7 @@ body {
       font-size: 1.2rem;
       text-align: center;
       border: none;
-      width: 3.7rem;
+      width: 4rem;
       border-radius: 3px; }
       .shopping__count input:focus {
         outline: none;
@@ -487,6 +506,13 @@ body {
     visibility: hidden;
     opacity: 0;
     transition: all .5s; }
+  .shopping__deleteAll{
+    visibility: hidden;
+  }
+  .shopping__deleteAll .btn-inline{
+    margin: 0 auto;
+    padding: 1.2rem 1.6rem;
+  }
   .shopping__item:hover .shopping__delete {
     opacity: 1;
     visibility: visible; }

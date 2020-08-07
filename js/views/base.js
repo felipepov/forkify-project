@@ -5,9 +5,14 @@ export const elements = {
     searchResList: document.querySelector('.results__list'),
     searchResPages: document.querySelector('.results__pages'),
     recipe: document.querySelector('.recipe'),
-    shopping: document.querySelector('.shopping__list'),
+    shopping: document.querySelector('.shopping'),
+    shoppingList: document.querySelector('.shopping__list'),
+    shoppingDeleteAll: document.querySelector('.shopping__deleteAll'),
     likesMenu: document.querySelector('.likes__field'),
-    likesList: document.querySelector('.likes__list')
+    likesList: document.querySelector('.likes__list'),
+    errorRecipe: document.querySelector('.error__getResult'),
+    errorResults: document.querySelector('.error__getRecipe'),
+    errorSearch: document.querySelector('.error__controlSearch'),
 };
 
 export const elementStrings = {

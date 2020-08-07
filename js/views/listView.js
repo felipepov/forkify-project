@@ -15,7 +15,7 @@ export const renderItem = item => {
             </button>
         </li>
     `;
-    elements.shoppingList.insertAdjacentHTML('beforeend', markup);
+    elements.shoppingList.insertAdjacentHTML('afterbegin', markup);
 };
 
 export const deleteItem = id => {
@@ -25,4 +25,12 @@ export const deleteItem = id => {
 
 export const deleteAll = () => {
     elements.shoppingList.innerHTML = '';
+}
+
+export const getInput = () => {
+    const newItem = {};
+    newItem.value = elements.manualValue.value;
+    newItem.unit = elements.manualUnit.value;
+    newItem.ing = elements.manualIng.value;
+    return newItem;
 }

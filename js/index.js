@@ -104,10 +104,7 @@ const controlRecipe = async () => {
 };
  
 ['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));
-document.addEventListener('click', e => {
-    if (state.list.items.length > 1) {elements.shoppingDeleteAll.style.visibility = 'visible'}
-    else {elements.shoppingDeleteAll.style.visibility = 'hidden'}
-})
+
 
 /** 
  * LIST CONTROLLER
@@ -122,6 +119,7 @@ const controlList = () => {
         const item = state.list.addItem(el.count, el.unit, el.ingredient);
         listView.renderItem(item);
     });
+    if (state.list.items.length > 1) elements.shoppingDeleteAll.style.visibility = 'visible';
 }
 
 // Handle delete and update list item events
@@ -144,9 +142,10 @@ elements.shoppingList.addEventListener('click', e => {
         state.list.updateCount(id, val);
     }
 });
-// Handle delete and update all list items
+
+// Handle delete all and update list items
 elements.shopping.addEventListener('click', e => {
-    // Handle the delete button
+    // Handle the delete all button
     if (e.target.matches('.shopping__deleteAll, .shopping__deleteAll *')) {
         // Delete from state
         state.list.deleteAll();
@@ -155,6 +154,17 @@ elements.shopping.addEventListener('click', e => {
         listView.deleteAll();
         elements.shoppingDeleteAll.style.visibility = 'hidden';
     } 
+});
+
+// Handle manual added items
+elements.shoppingAdd.addEventListener('click', e => {
+    if (!state.list) state.list = new List(); 
+
+    const addedItem = listView.getInput();
+    const item = state.list.addItem(addedItem.value, addedItem.unit, addedItem.ing);
+    listView.renderItem(item);
+
+    if (state.list.items.length > 1) elements.shoppingDeleteAll.style.visibility = 'visible';
 });
 
 

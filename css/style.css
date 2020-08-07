@@ -237,7 +237,7 @@ body {
     box-shadow: 0 0.8rem 5rem 2rem rgba(101, 90, 86, 0.1);
     visibility: hidden;
     opacity: 0;
-    transition: all .5s .2s; }
+    transition: all .3s .2s; }
 
 .results,
 .likes {
@@ -472,7 +472,6 @@ body {
   .shopping__count {
     flex: 0 0 7.5rem;
     padding: .4rem .5rem;
-    border: 1px solid #F2EFEE;
     border-radius: 3px;
     margin-right: 2rem;
     cursor: pointer;
@@ -502,7 +501,7 @@ body {
     right: 0;
     background-image: linear-gradient(to right, transparent 0%, #fff 40%, #fff 100%);
     width: 3.75rem;
-    padding-left: 2rem;
+    padding-left: 1rem;
     visibility: hidden;
     opacity: 0;
     transition: all .5s; }
@@ -512,6 +511,15 @@ body {
   .shopping__deleteAll .btn-inline{
     margin: 0 auto;
     padding: 1.2rem 1.6rem;
+  }
+  .shopping__manual .shopping__count{
+    margin-right: 0;
+    margin-bottom: 1rem;
+    border: 2px solid #F2EFEE;
+  }
+  .shopping__manual .manual--ingredient{
+    flex: 1;
+    margin-right: 0.25rem;
   }
   .shopping__item:hover .shopping__delete {
     opacity: 1;

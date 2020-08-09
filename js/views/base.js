@@ -6,7 +6,6 @@ export const elements = {
     searchResPages: document.querySelector('.results__pages'),
     recipe: document.querySelector('.recipe'),
     shopping: document.querySelector('.shopping'),
-    shoppingAdd: document.querySelector('.shopping__add'),
     manualValue:document.querySelector('.manual--value'),
     manualUnit:document.querySelector('.manual--unit'),
     manualIng:document.querySelector('.manual--ingredient'),

@@ -32,5 +32,8 @@ export const getInput = () => {
     newItem.value = elements.manualValue.value;
     newItem.unit = elements.manualUnit.value;
     newItem.ing = elements.manualIng.value;
+    elements.manualValue.value = '0';
+    elements.manualUnit.value = '';
+    elements.manualIng.value = '';
     return newItem;
 }

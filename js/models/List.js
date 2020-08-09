@@ -11,7 +11,13 @@ export default class List {
         let item;
         if (same){
             let newUnit;
-            if (same.unit === unit) {newUnit = same.unit} else {newUnit = ''}
+            if (same.unit === unit) {
+                newUnit = same.unit
+            } else {
+                if (same.unit === '') {newUnit = unit}
+                else if (unit === '') {newUnit = same.unit}
+                else {newUnit = ''}
+            }
             item = {
                 id: new Date().getUTCMilliseconds(),
                 count: count + same.count,
